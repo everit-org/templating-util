@@ -42,10 +42,18 @@ public abstract class AbstractTemplateContext implements TemplateContext {
 
     @Override
     public String renderFragment(final String fragmentId) {
+        return renderFragment(fragmentId, null);
+    }
+
+    @Override
+    public String renderFragment(final String fragmentId, final Map<String, Object> parameters) {
         Map<String, Object> parentVars = mVars;
         String parentFragmentId = this.mfragmentId;
 
-        mVars = new InheritantMap<String, Object>(mVars, true);
+        mVars = new InheritantMap<String, Object>(mVars, false);
+        if (parameters != null) {
+            mVars.putAll(parameters);
+        }
         this.mfragmentId = fragmentId;
 
         try {
