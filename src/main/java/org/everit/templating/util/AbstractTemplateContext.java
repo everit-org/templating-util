@@ -70,7 +70,7 @@ public abstract class AbstractTemplateContext implements TemplateContext {
         Map<String, Object> originalVars = mVars;
         mVars = new InheritantMap<String, Object>(originalVars, true);
         try {
-            return supplier.call();
+            return supplier.get();
         } finally {
             mVars = originalVars;
         }

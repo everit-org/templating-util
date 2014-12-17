@@ -18,5 +18,5 @@ package org.everit.templating.util;
 
 public interface Supplier<R> {
 
-    R call();
+    R get();
 }
