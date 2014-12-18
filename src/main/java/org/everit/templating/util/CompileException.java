@@ -45,7 +45,6 @@ public class CompileException extends RuntimeException {
     private int cursor = 0;
 
     private char[] expr;
-    private int lastLineStart = 0;
 
     private int lineNumber = 1;
 
@@ -141,10 +140,6 @@ public class CompileException extends RuntimeException {
         return expr;
     }
 
-    public int getLastLineStart() {
-        return lastLineStart;
-    }
-
     public int getLineNumber() {
         return lineNumber;
     }
@@ -164,10 +159,6 @@ public class CompileException extends RuntimeException {
 
     public void setExpr(final char[] expr) {
         this.expr = expr;
-    }
-
-    public void setLastLineStart(final int lastLineStart) {
-        this.lastLineStart = lastLineStart;
     }
 
     public void setLineNumber(final int lineNumber) {
