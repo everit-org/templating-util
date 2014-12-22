@@ -66,13 +66,4 @@ public abstract class AbstractTemplateContext implements TemplateContext {
 
     protected abstract String renderFragmentInternal(final String fragmentId, final Map<String, Object> vars);
 
-    public <R> R runInBlock(final Supplier<R> supplier) {
-        Map<String, Object> originalVars = mVars;
-        mVars = new InheritantMap<String, Object>(originalVars, true);
-        try {
-            return supplier.get();
-        } finally {
-            mVars = originalVars;
-        }
-    }
 }
