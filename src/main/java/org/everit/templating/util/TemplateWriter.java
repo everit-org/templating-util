@@ -19,14 +19,27 @@ package org.everit.templating.util;
 import java.io.IOException;
 import java.io.Writer;
 
+/**
+ * Wrapper around a {@link Writer} that throws unchecked exception instead of {@link IOException}.
+ */
 public class TemplateWriter {
 
+    /**
+     * The wrapped writer.
+     */
     private final Writer writer;
 
     public TemplateWriter(final Writer writer) {
         this.writer = writer;
     }
 
+    /**
+     * Appending some text to the writer. See {@link Writer#append(CharSequence)}.
+     *
+     * @param text
+     *            The text to append.
+     * @return The instance of this {@link TemplateWriter}.
+     */
     public TemplateWriter append(final String text) {
         try {
             this.writer.write(text);

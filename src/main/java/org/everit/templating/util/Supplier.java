@@ -16,6 +16,12 @@
  */
 package org.everit.templating.util;
 
+/**
+ *
+ * Supplier functional interface that is similar to the one that is introduced in Java 8.
+ *
+ * @param <R>
+ */
 public interface Supplier<R> {
 
     R get();

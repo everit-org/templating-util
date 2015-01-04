@@ -23,14 +23,42 @@ import java.util.Set;
 
 import org.everit.templating.TemplateConstants;
 
+/**
+ * A Map implementation that allows to return values from a parent map in the way that modifications are only applied to
+ * the current instance.
+ *
+ * @param <K>
+ *            Type of key of the map.
+ * @param <V>
+ *            Type of value of the map.
+ */
 public class InheritantMap<K, V> implements Map<K, V> {
 
+    /**
+     * The map that holds the newly inserted keys and values.
+     */
     private final Map<K, V> internalMap;
 
+    /**
+     * Parent map.
+     */
     private final Map<K, V> parentMap;
 
+    /**
+     * In case of true, those keys will be updated on the parent that were already available there, otherwise every
+     * operation will be processed on the child map.
+     */
     private final boolean updateOnParent;
 
+    /**
+     * Constructor.
+     * 
+     * @param parentMap
+     *            The map that holds key-value pairs that are accessible, but not modifiable via this map instance.
+     * @param updateOnParent
+     *            In case of true, those keys will be updated on the parent that were already available there, otherwise
+     *            every operation will be processed on the child map.
+     */
     public InheritantMap(final Map<K, V> parentMap, final boolean updateOnParent) {
         this.parentMap = parentMap;
         this.internalMap = new HashMap<K, V>();

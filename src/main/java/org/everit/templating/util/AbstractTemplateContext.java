@@ -18,17 +18,36 @@ package org.everit.templating.util;
 
 import java.util.Map;
 
+import org.everit.templating.CompiledTemplate;
 import org.everit.templating.TemplateContext;
 
+/**
+ * Helper class to be able to create template context implementations.
+ */
 public abstract class AbstractTemplateContext implements TemplateContext {
 
+    /**
+     * See {@link #getFragmentId()}.
+     */
     private String mfragmentId;
 
+    /**
+     * See {@link #getVars()}.
+     */
     private Map<String, Object> mVars;
 
-    public AbstractTemplateContext(final String mfragmentId, final Map<String, Object> mVars) {
-        this.mfragmentId = mfragmentId;
-        this.mVars = mVars;
+    /**
+     * Constructor.
+     *
+     * @param fragmentId
+     *            The id of the fragment that was passed when
+     *            {@link CompiledTemplate#render(java.io.Writer, Map, String)} was called.
+     * @param vars
+     *            The variables that can be used to evaluate expressions.
+     */
+    public AbstractTemplateContext(final String fragmentId, final Map<String, Object> vars) {
+        this.mfragmentId = fragmentId;
+        this.mVars = vars;
     }
 
     @Override
@@ -64,6 +83,17 @@ public abstract class AbstractTemplateContext implements TemplateContext {
         }
     }
 
+    /**
+     * Classes that inherit from this class should implement this function to be able to render fragments via the
+     * templateContext.
+     *
+     * @param fragmentId
+     *            The id of the fragment that should be rendered.
+     * @param vars
+     *            Variables that should be used during rendering the fragment. Change of this map does not affect the
+     *            available variables outside the fragment.
+     * @return The render output.
+     */
     protected abstract String renderFragmentInternal(final String fragmentId, final Map<String, Object> vars);
 
 }

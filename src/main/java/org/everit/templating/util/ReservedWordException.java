@@ -16,6 +16,9 @@
  */
 package org.everit.templating.util;
 
+/**
+ * Exception that is thrown when someone wants to override a reserved variable.
+ */
 public class ReservedWordException extends RuntimeException {
 
     /**

@@ -18,9 +18,16 @@ package org.everit.templating.util;
 
 import java.util.Iterator;
 
+/**
+ * An iterable that can iterate throug {@link Iterable} instances but also through primitive or Object arrays.
+ *
+ * @param <T>
+ *            The type of the iterable.
+ */
 public class UniversalIterable<T> implements Iterable<T> {
 
     private static abstract class AbstractArrayIterator<T> extends AbstractIterator<T> {
+
         private int cursor = 0;
 
         private final int length;
