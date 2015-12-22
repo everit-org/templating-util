@@ -1,18 +1,17 @@
-/**
- * This file is part of Everit - Templating Util.
+/*
+ * Copyright (C) 2011 Everit Kft. (http://www.everit.biz)
  *
- * Everit - Templating Util is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * Everit - Templating Util is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
+ *         http://www.apache.org/licenses/LICENSE-2.0
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with Everit - Templating Util.  If not, see <http://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package org.everit.templating.util;
 
@@ -24,34 +23,34 @@ import java.io.Writer;
  */
 public class TemplateWriter {
 
-    /**
-     * The wrapped writer.
-     */
-    private final Writer writer;
+  /**
+   * The wrapped writer.
+   */
+  private final Writer writer;
 
-    public TemplateWriter(final Writer writer) {
-        this.writer = writer;
-    }
+  public TemplateWriter(final Writer writer) {
+    this.writer = writer;
+  }
 
-    /**
-     * Appending some text to the writer. See {@link Writer#append(CharSequence)}.
-     *
-     * @param text
-     *            The text to append.
-     * @return The instance of this {@link TemplateWriter}.
-     */
-    public TemplateWriter append(final String text) {
-        try {
-            this.writer.write(text);
-        } catch (IOException e) {
-            // If it was java 8, we would throw an UncheckedIOException.
-            throw new RuntimeException(e);
-        }
-        return this;
+  /**
+   * Appending some text to the writer. See {@link Writer#append(CharSequence)}.
+   *
+   * @param text
+   *          The text to append.
+   * @return The instance of this {@link TemplateWriter}.
+   */
+  public TemplateWriter append(final String text) {
+    try {
+      this.writer.write(text);
+    } catch (IOException e) {
+      // If it was java 8, we would throw an UncheckedIOException.
+      throw new RuntimeException(e);
     }
+    return this;
+  }
 
-    public Writer getWrapped() {
-        return writer;
-    }
+  public Writer getWrapped() {
+    return writer;
+  }
 
 }
